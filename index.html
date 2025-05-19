@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="natterjack-container">
+            <img src="img/natterjack_frames/natterjack_animation_main.png" alt="Natterjack toad" class="visible" id="natterjack-animation-1">
+            <img src="img/natterjack_frames/natterjack_animation_b1.png" alt="Natterjack toad blinks with one eye" class="hidden" id="natterjack-animation-2">
+            <img src="img/natterjack_frames/natterjack_animation_b2.png" alt="Natterjack toad blinks with both eyes" class="hidden" id="natterjack-animation-3">
+        </div>
+        <img src="img/graphics/1natterjack_toad.png" alt="Natterjack Toad" class="graphic-text" id="heading">
+        <img src="img/graphics/1click_me.png" alt="Click me to hear my call" class="graphic-text" id="click-me">
+    </div>
+    <!-- Hidden audio player -->
+    <audio id="blink-sound"
+    src="audio/natterjack.mp3"
+    preload="auto"
+    style="display:none"></audio>
+</body>
+</html>

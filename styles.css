@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+img.graphic-text {
+    position: absolute;
+    max-width: 100%;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+img.graphic-text#heading {
+    top: 24px;
+}
+
+img.graphic-text#click-me {
+    bottom: 24px;
+}
+
+.natterjack-container {
+    width: 50%;
+    height: 80%;
+    position: relative;
+}
+
+.natterjack-container img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/*
+.natterjack-container img{
+    display: none;
+}
+
+.natterjack-container img:first-child {
+    display: block;
+}
+*/
+
+// Animation styles
+img.visible {
+    display: block;
+}
+img.hidden {
+    display: none;
+}
