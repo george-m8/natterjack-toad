@@ -1,3 +1,82 @@
+.controls {
+    position: absolute;
+    bottom:24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background: #ddd;
+    padding: 10px 20px;
+    border: #aaaaaa solid 3px;
+    border-radius: 25px;
+}
+
+.controls .volume-control {
+    width: 86%;
+    flex: 1 1 0;
+}
+
+.controls .button-wrapper {
+    width: 10%;
+    min-width: 38px;
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.controls .button-wrapper #stop-button {
+    max-width:100%;
+    width:48px;
+    height: auto;
+}
+
+.controls .volume-control label{
+    display: block;
+    width: 64px;
+    min-width: 38px;
+}
+
+.controls .volume-control label img {
+    width: 64px;
+    height: auto;
+}
+
+.controls .button-wrapper #stop-button img {
+    display: block;
+}
+
+.controls.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.controls.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Stop button animation */
+@keyframes clickFeedback {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(0.7); }
+    100% { transform: scale(1); }
+}
+  
+.feedback {
+    animation: clickFeedback 200ms ease;
+}
+
+/* Custom volume slider */
 .natterjack-slider {
     --value: 1;
     -webkit-appearance: none;
@@ -6,19 +85,19 @@
     background:
       linear-gradient(
         to right,
-        #8abc4f 0%,
-        #8abc4f calc(var(--value) * 100%),
-        #ddd calc(var(--value) * 100%),
-        #ddd 100%
+        #475f42 0%,
+        #475f42 calc(var(--value) * 100%),
+        #cdb283 calc(var(--value) * 100%),
+        #cdb283 100%
       );
     border-radius: 6px;
     outline: none;
     cursor: pointer;
     margin: 0.5em 0;
-  }
+}
   
-  /* WebKit thumb */
-  .natterjack-slider::-webkit-slider-thumb {
+/* WebKit thumb */
+.natterjack-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 48px;
     height: 48px;
@@ -26,24 +105,45 @@
     background-size: contain;
     margin-top: -6px; /* center the thumb vertically */
     cursor: pointer;
-  }
+}
   
-  /* Firefox thumb */
-  .natterjack-slider::-moz-range-thumb {
+/* Firefox thumb */
+.natterjack-slider::-moz-range-thumb {
     width: 48px;
     height: 48px;
     background: url('img/graphics/natterjack-illustration-192px.png') no-repeat center;
     background-size: contain;
     border: none;
     cursor: pointer;
-  }
+}
   
-  /* IE / Edge */
-  .natterjack-slider::-ms-thumb {
+/* IE / Edge */
+.natterjack-slider::-ms-thumb {
     width: 48px;
     height: 48px;
     background: url('img/graphics/natterjack-illustration-192px.png') no-repeat center;
     background-size: contain;
     border: none;
     cursor: pointer;
-  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 860px) {
+    .controls {
+        width: 60%;
+        bottom: 48px;
+    }
+    .controls .volume-control label {
+        width: 48px;
+    }
+}
+
+@media (max-width: 480px) {
+    .controls {
+        width: 90%;
+        bottom: 48px;
+    }
+    .controls .volume-control label {
+        width: 38px;
+    }
+}

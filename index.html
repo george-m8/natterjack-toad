@@ -27,19 +27,24 @@
     preload="auto"
     style="display:none"></audio>
     
-    <!-- Volume control -->
-    <div class="volume-control">
-        <label for="volume-slider">Volume:</label>
-        <input
-          type="range"
-          id="volume-slider"
-          class="natterjack-slider"
-          min="0"
-          max="1"
-          step="0.01"
-          value="1"
-          aria-label="Volume slider"
-        >
+    <!-- Controls -->
+    <div class="controls hidden">
+        <div class="volume-control">
+            <label for="volume-slider"><img src="img/graphics/1volume.png"></label>
+            <input
+            type="range"
+            id="volume-slider"
+            class="natterjack-slider"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+            aria-label="Volume slider"
+            >
+        </div>
+        <div class="button-wrapper">
+            <img src="img/graphics/stop-button-192px.png" id="stop-button"></img>
+        </div>
     </div>
 </body>
 </html>

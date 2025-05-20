@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // JS (add this after your existing script)
     const volumeSlider = document.getElementById('volume-slider');
-    
+
     // set initial CSS var so the track is filled correctly on page-load
     volumeSlider.style.setProperty('--value', volumeSlider.value);
 
@@ -80,4 +80,31 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.style.setProperty('--value', v);
         sound.volume = v;
     });
+
+    // Stop sound button
+    const stopBtn = document.getElementById('stop-button');
+
+    stopBtn.addEventListener('click', () => {
+        // add the class to trigger the animation
+        stopBtn.classList.add('feedback');
+        // remove it cleanly after the animation ends
+        stopBtn.addEventListener('animationend', () => {
+            stopBtn.classList.remove('feedback');
+        }, { once: true });
+
+        stopBtn.addEventListener('click', () => {
+        sound.pause();
+        sound.currentTime = 0;
+        log('Blink sound stopped.');
+        });
+    });
+
+    const controls = document.querySelector('.controls');
+
+    // fire only once, on first play
+    sound.addEventListener('play', () => {
+    controls.classList.add('visible');
+    controls.classList.remove('hidden');
+    log('Controls made visible.');
+    }, { once: true });
   });

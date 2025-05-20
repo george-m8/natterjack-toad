@@ -31,6 +31,8 @@ body {
     justify-content: center;
     height: 100vh;
     width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 /*
@@ -65,6 +67,8 @@ img.graphic-text#heading {
 }
 img.graphic-text#click-me {
     margin-top: -24px;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 .natterjack-container {
@@ -98,4 +102,26 @@ img.visible {
 }
 img.hidden {
     display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 860px) {
+    .text-container {
+        width: 80%;
+    }
+    .natterjack-container {
+        height: 420px;
+    }
+    .text-container .graphic-text#heading {
+        margin-bottom: -48px;
+    }
+    .text-container .graphic-text#click-me {
+        margin-top: -48px;
+    }
+}
+
+@media (max-width: 480px) {
+    .natterjack-container {
+        height: 280px;
+    }
 }
