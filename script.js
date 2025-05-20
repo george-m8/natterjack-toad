@@ -59,9 +59,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // click = blink immediately
     container.addEventListener('click', () => {
-      log('Container clicked. Triggering blink immediately.');
+      log('Container clicked. Triggering blink immediatel & playing sound.');
       blink();
+      clearTimeout(blinkTimeout);
+      log('Cleared scheduled blink timeout.');
+      // play sound
       sound.currentTime = 0;
       sound.play().catch(e => log('Sound play failed:', e));
     });
+
+    // JS (add this after your existing script)
+    const volumeSlider = document.getElementById('volume-slider');
+
+    // set initial CSS var so the track is filled correctly on page-load
+    volumeSlider.style.setProperty('--value', volumeSlider.value);
+
+    // on input, update the CSS var and the audio volume
+    volumeSlider.addEventListener('input', e => {
+        const v = e.target.value;
+        e.target.style.setProperty('--value', v);
+        sound.volume = v;
+    });
+
+    // Stop sound button
+    const stopBtn = document.getElementById('stop-button');
+
+    stopBtn.addEventListener('click', () => {
+        // add the class to trigger the animation
+        stopBtn.classList.add('feedback');
+        // remove it cleanly after the animation ends
+        stopBtn.addEventListener('animationend', () => {
+            stopBtn.classList.remove('feedback');
+        }, { once: true });
+
+        stopBtn.addEventListener('click', () => {
+        sound.pause();
+        sound.currentTime = 0;
+        log('Blink sound stopped.');
+        });
+    });
+
+    const controls = document.querySelector('.controls');
+
+    // fire only once, on first play
+    sound.addEventListener('play', () => {
+    controls.classList.add('visible');
+    controls.classList.remove('hidden');
+    log('Controls made visible.');
+    }, { once: true });
   });
