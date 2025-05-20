@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Stop sound button
-    const stopBtn = document.getElementById('stop-button');
+    const stopBtn = document.getElementById('stop-button-wrapper');
 
     stopBtn.addEventListener('click', () => {
         // add the class to trigger the animation
