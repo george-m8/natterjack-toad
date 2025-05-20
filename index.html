@@ -22,10 +22,12 @@
     </div>
     
     <!-- Hidden audio player -->
-    <audio id="blink-sound"
-    src="audio/realtrap.mp3"
-    preload="auto"
-    style="display:none"></audio>
+    <!-- multiple frog sounds -->
+    <audio class="frog-sound" src="audio/natterjack.mp3" preload="auto" style="display: none;"></audio>
+    <audio class="frog-sound" src="audio/natterjack.mp3" preload="auto" style="display: none;"></audio>
+    <audio class="frog-sound" src="audio/natterjack.mp3" preload="auto" style="display: none;"></audio>
+    <!-- fallback if JS finds none -->
+    <audio id="default-sound" src="audio/natterjack.mp3" preload="auto" style="display: none;"></audio>
     
     <!-- Controls -->
     <div class="controls hidden">
