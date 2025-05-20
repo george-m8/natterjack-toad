@@ -77,6 +77,12 @@
 }
 
 /* Custom volume slider */
+
+.natterjack-slider {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
 .natterjack-slider {
     --value: 1;
     -webkit-appearance: none;
@@ -95,12 +101,19 @@
     cursor: pointer;
     margin: 0.5em 0;
 }
+
+.natterjack-slider:focus {
+    outline: none;
+  }
   
 /* WebKit thumb */
 .natterjack-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
+    appearance: none;
     width: 48px;
     height: 48px;
+    border: none;               /* remove any default border */
+    background-color: transparent; /* remove any default fill */
     background: url('img/graphics/natterjack-illustration-192px.png') no-repeat center;
     background-size: contain;
     margin-top: -6px; /* center the thumb vertically */
