@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainFrame    = document.getElementById('natterjack-animation-1');
     const blinkFrame1  = document.getElementById('natterjack-animation-2');
     const blinkFrame2  = document.getElementById('natterjack-animation-3');
-    const sound        = document.getElementById('blink-sound');
+    const soundEls    = Array.from(document.querySelectorAll('.frog-sound'));
+    const defaultSound= document.getElementById('default-sound');
+    const allSounds = [...soundEls, defaultSound];
+
+    let currentSound = null;
     let blinkTimeout;
 
     log('Initialized DOM elements.');
@@ -59,13 +63,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // click = blink immediately
     container.addEventListener('click', () => {
-      log('Container clicked. Triggering blink immediatel & playing sound.');
-      blink();
-      clearTimeout(blinkTimeout);
-      log('Cleared scheduled blink timeout.');
-      // play sound
-      sound.currentTime = 0;
-      sound.play().catch(e => log('Sound play failed:', e));
+        log('Container clicked. Triggering blink + random sound.');
+
+        // stop any sound still going
+        if (currentSound) {
+            currentSound.pause();
+            currentSound.currentTime = 0;
+        }
+
+        // blink as before
+        blink();
+        clearTimeout(blinkTimeout);
+
+        // pick one at random (or fallback)
+        let chosen = soundEls.length
+            ? soundEls[Math.floor(Math.random() * soundEls.length)]
+            : defaultSound;
+
+        // build a pool that excludes the last sound (if there are at least 2)
+        const pool = soundEls.length > 1
+            ? soundEls.filter(s => s !== currentSound)
+            : soundEls;
+
+        // pick one (or fallback if nothing in pool)
+        const selectedSound = pool.length
+            ? pool[Math.floor(Math.random() * pool.length)]
+            : defaultSound;
+
+        // play it & remember it
+        selectedSound.currentTime = 0;
+        selectedSound.play().catch(e => log('Sound play failed:', e));
+        currentSound = selectedSound;
     });
 
     // JS (add this after your existing script)
@@ -78,33 +106,38 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeSlider.addEventListener('input', e => {
         const v = e.target.value;
         e.target.style.setProperty('--value', v);
-        sound.volume = v;
-    });
+        // update every sound element:
+        soundEls.forEach(s => s.volume = v);
+        defaultSound.volume = v;
+      });
 
     // Stop sound button
     const stopBtn = document.getElementById('stop-button-wrapper');
 
     stopBtn.addEventListener('click', () => {
-        // add the class to trigger the animation
+        // feedback animation
         stopBtn.classList.add('feedback');
-        // remove it cleanly after the animation ends
         stopBtn.addEventListener('animationend', () => {
             stopBtn.classList.remove('feedback');
         }, { once: true });
-
-        stopBtn.addEventListener('click', () => {
-        sound.pause();
-        sound.currentTime = 0;
-        log('Blink sound stopped.');
-        });
-    });
+      
+        // stop only the current sound
+        if (currentSound) {
+          currentSound.pause();
+          currentSound.currentTime = 0;
+          currentSound = null;
+          log('Blink sound stopped.');
+        }
+    });   
 
     const controls = document.querySelector('.controls');
 
     // fire only once, on first play
-    sound.addEventListener('play', () => {
-    controls.classList.add('visible');
-    controls.classList.remove('hidden');
-    log('Controls made visible.');
-    }, { once: true });
+    allSounds.forEach(aud => {
+        aud.addEventListener('play', () => {
+          controls.classList.add('visible');
+          controls.classList.remove('hidden');
+          log('Controls made visible.');
+        }, { once: true });
+      });
   });
