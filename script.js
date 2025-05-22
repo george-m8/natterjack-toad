@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const debug = true; // Toggle this flag to enable/disable debug logs
+    const debug = false; // Toggle this flag to enable/disable debug logs
 
     const log = (...args) => {
       if (debug) console.log(...args);
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     log('Set initial visibility: mainFrame visible, others hidden.');
 
     function scheduleNextBlink() {
-      const delay = 3000 + Math.random() * 2000; // 3–5 seconds
+      const delay = 6000 + Math.random() * 4000; // 6–10 seconds
       log(`Scheduling next blink in ${delay.toFixed(0)}ms.`);
       blinkTimeout = setTimeout(blink, delay);
     }
