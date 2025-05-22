@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const debug = true; // Toggle this flag to enable/disable debug logs
+    const debug = false; // Toggle this flag to enable/disable debug logs
 
     const log = (...args) => {
       if (debug) console.log(...args);
