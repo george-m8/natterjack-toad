@@ -1,0 +1,28 @@
+.qr-container h1, .qr-container h2, .qr-container h3, .qr-container p, .qr-container a, .qr-container span {
+    text-align: center;
+}
+
+.qr-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.qr-item {
+    width: 50%;
+    max-width: 512px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+}
